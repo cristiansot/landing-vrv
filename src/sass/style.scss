@@ -1,262 +1,190 @@
-*,
-*:before,
-*:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.content {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  clip-path: border-box;
-  transform: translateZ(0);
-}
-
-.block {
-  position: relative;
-  height: 100vh;
-}
-
-[class*="item-parallax"] {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.3s ease-out;
-  will-change: transform; // prevents paint flashing
-}
-
-.item-parallax-media {
-  z-index: 1;
-
-  img {
-    will-change: transform; // prevents paint flashing
-  }
-}
-.item-parallax-content {
-  z-index: 2;
-}
-
-$boxes: 5;
-@for $i from 1 through $boxes {
-  .block:nth-child(#{$i}) .item-parallax-content {
-    transform: translateY(calc(var(--yBlock-#{$i}) * 0.5px));
-  }
-  .block:nth-child(#{$i}) .item-parallax-media img {
-    transform: translateY(calc(var(--yBlock-#{$i}) * 0.1px));
+$color-white: #fff;
+$color-antiwhite: #EDF2F4;
+$color-coolgray: #8D99AE;
+$color-gunmetal: #2B2D42;
+$color-imperialred: #383f52;
+$color-candyred: #383f52;
+@mixin bp-sm {
+  @media only screen and (max-width: 768px) {
+    @content;
   }
 }
 
-// --------------- layout
-
-$dark: #00171f;
-$light: white;
-
-@mixin font($type: regular) {
-  @if $type == head {
-    font-family: "Inknut Antiqua", serif;
-  }
-  @if $type == regular {
-    font-family: "Roboto", sans-serif;
-  }
-  @if $type == condensed {
-    font-family: "Roboto Condensed", sans-serif;
-  }
-}
-
-@mixin font-smoothing($value: on) {
-  @if $value == on {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  } @else {
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-  }
+body{
+  font-family: 'Montserrat';
 }
 
 html {
-  background-color: $dark;
+  font-size: 14px;
 }
 
-.flex-container {
+.animated {
+  animation-duration: 500ms;
+}
+
+.btn.btn-default:hover {
+  background-color: #fafafa;
+}
+
+.top-hero {
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
   display: flex;
-}
-.centered-content {
-  margin: auto;
-}
+  height: 100vh;
+  background-image: url("/src/img/hero.jpg");
+  align-items: center;
+  
+  h1 {
+    color: $color-candyred;
+    font-weight: 100;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+  }
 
-.head-large {
-  margin-bottom: 5vw;
-  font-size: 10vw;
-  line-height: 1.2em;
-  @include font(head);
-  color: $light;
-}
-.head-small {
-  margin-bottom: 1.5rem;
-  font-size: 1.2rem;
-  line-height: 1.2em;
-  @include font(condensed);
-  color: $light;
-  text-transform: uppercase;
-  letter-spacing: 0.5em;
-  @include font-smoothing(on);
-}
-.head-centered {
-  text-align: center;
-}
+  h2{
+    color: $color-candyred;
+    font-weight: 100;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    line-height: .9;
+  }
 
-.copy {
-  display: block;
-  max-width: 500px;
-  margin-right: auto;
-  margin-bottom: 1.5rem;
-  margin-left: auto;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
-  @include font(regular);
-  font-size: 1rem;
-  line-height: 1.8em;
-  text-align: center;
-}
-.copy-white {
-  color: $light;
-  @include font-smoothing(on);
-}
+  h3{
+    color: $color-candyred;
+    font-size: 40px;
+    font-weight: 400;
+  }
 
-.item-parallax-media {
-  overflow: hidden;
+  h4{
+    color: $color-candyred;
+    font-size: 30px;
+    font-weight: 300;
+  }
 
-  img {
-    position: absolute;
-    top: -10%;
-    left: -10%;
-    width: 120%;
-    height: 120%;
-    object-fit: cover;
+  p {
+    color: $color-antiwhite;
+    
+  }
+  @include bp-sm {
+    min-height: 400px;
+
+    h1 {
+      font-size: 46px;
+      margin-left: 50px;
+      margin-top: -10px;
+    }
+
+    h2{
+      font-size: 60px;
+      font-weight: 400;
+      margin-left: 50px;
+    }
+  
+    h3{
+      font-size: 26px;
+      font-weight: 400;
+      margin-left: 50px;
+      margin-top: 10px;
+
+    }
+  
+    h4{
+      font-size: 20px;
+      font-weight: 300;
+      margin-left: 50px;
+      margin-top: 0px;
+    }
   }
 }
 
-// ------------ landing
-.section-landing:before {
-  content: "";
+.top-nav {
+  z-index: 100;
   position: absolute;
-  top: 50%;
-  left: 24%;
-  width: 10px;
-  height: 80%;
-  background-color: white;
-  z-index: 3;
-  transform: translateY(-13vw);
-}
-
-.section-landing .item-parallax-media {
-  opacity: calc(1 - (var(--y) * 0.0009));
-}
-
-.landing-content {
-  padding-left: 30%;
-}
-
-// ---------------- intro
-.section-intro:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 80%;
-  background-color: mix($light, $dark, 5%);
-  transform: translateX(-50%) translateY(-50%) rotate(calc((var(--y) * 0.1deg)));
-  will-change: transform;
-  backface-visibility: visible;
-}
-
-// ------------------ image grid
-.img-grid {
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.img-gridItem {
-  position: relative;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 800px;
-  margin-right: auto;
-  margin-left: auto;
-
-  img {
-    display: block;
-    width: 50%;
-    height: 40vh;
-    object-fit: cover;
-    will-change: transform;
-    backface-visibility: visible;
+  background-color: rgba(73, 72, 109, 0.302);
+  &.sticky {
+    position: fixed;
   }
-
-  &.type-left img {
-    margin-right: auto;
+  ul {
+    float: right;
+    .signup-btn {
+      padding: .25em .5em;
+    }
+    .signup-btn,
+    .signup-btn:hover {
+      color: $color-antiwhite!important;
+      border-bottom: 1px solid $color-candyred!important;
+      border-color: $color-candyred!important;
+    }
   }
-  &.type-right img {
-    margin-left: auto;
+  a {
+    font-size: 1.1rem;
+    color:$color-gunmetal;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding: 0 0 2px;
+    transition: .55s;
   }
-}
-
-.img-gridItem {
-  &:nth-child(1) img {
-    transform: translateX(calc(var(--yBlock-4) * -0.03%));
-  }
-  &:nth-child(2) img {
-    transform: translateX(calc(var(--yBlock-4) * 0.03%));
-  }
-}
-
-.img-caption {
-  position: absolute;
-  top: 50%;
-  width: 50%;
-  transform: translateY(-50%);
-
-  * {
-    text-align: left;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-  }
-
-  .type-left & {
-    right: 0;
-  }
-  .type-right & {
-    left: 0;
+  a:hover {
+    color: #ffffff;
+    border-color: #ffffff;
   }
 }
 
-// ---------------- end
-.section-end:before {
-  content: "";
-  position: absolute;
-  bottom: 50%;
-  left: 24%;
-  width: 10px;
-  height: 80%;
-  background-color: white;
-  z-index: 3;
-  transform: translateY(8vw);
+.banner {
+  color: $color-antiwhite;
+  background-position: center;
+  background-size: cover;
+  // background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // min-height: 400px;
+  height: 100vh;
+  
+  .wrapper {
+    text-align: center;
+  }
+  
+  @include bp-sm {
+    min-height: 400px;
+    h1,
+    h2 {
+      font-size: 20px;
+    }
+  }
+  &.speakers,
+  &.signup {
+    background-color: $color-candyred;
+  }
+  &.speakers {
+    background-image: linear-gradient(rgba($color-candyred, .45), rgba($color-candyred, .45)), url("/src/img/midea_banner.jpg");
+  }
+  &.learn {
+    background-color: $color-gunmetal;
+    background-image: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url("https://images.unsplash.com/photo-1493020258366-be3ead1b3027?dpr=1&auto=compress,format&fit=crop&w=1199&h=1199&q=80&cs=tinysrgb&crop=&bg=");
+  }
+  &.signup {
+    background-image: linear-gradient(rgba($color-candyred, .45), rgba($color-candyred, .45)), url("https://images.unsplash.com/photo-1487537708572-3c850b5e856e?dpr=1&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=&bg=");
+  }
 }
 
-// -------------- kind of a footer
-.custom-properties-ftw {
-  padding: 2.5rem 1.5rem;
-
-  .head-small {
-    margin-bottom: 0;
+footer {
+  text-align: center;
+  background-color: $color-gunmetal;
+  color: $color-antiwhite;
+  .copyright {
+    padding: 0;
+    margin-top: 7px;
+    font-size: 0.9rem;
   }
 }
