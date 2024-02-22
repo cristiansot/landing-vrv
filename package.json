@@ -1,0 +1,18 @@
+{
+  "homepage": "https://cristiansot.github.io/landing-vrv",
+  "name": "landing-vrv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/Users/cristian/Desktop/IMAKORP/FEBRERO/01/landing-vrv"
+  },
+  "author": "Cristian",
+  "license": "ISC"
+}
