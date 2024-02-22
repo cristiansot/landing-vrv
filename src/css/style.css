@@ -434,4 +434,26 @@ a {
     margin-left: auto;
     margin-right: auto;
   }
+}
 
+/* Whatsapp */
+
+#whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right:20px;
+}
+
+svg {
+  width: 80px;
+  margin-right: 50px;
+  margin-bottom: 40px;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.4));
+}
+
+circle {
+  fill: #25d366;
+}
+path {
+  fill: #fff;
+}
